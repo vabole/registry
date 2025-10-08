@@ -25,7 +25,7 @@ A complete Next.js application template with:
 
 **Installation (Direct URL):**
 ```bash
-npx shadcn add https://registry-pi-black.vercel.app/r/clerk-convex-starter.json
+pnpx shadcn add https://registry-pi-black.vercel.app/r/clerk-convex-starter.json
 ```
 
 **Or configure as a registry in your `components.json`:**
@@ -38,7 +38,7 @@ npx shadcn add https://registry-pi-black.vercel.app/r/clerk-convex-starter.json
 ```
 Then install with:
 ```bash
-npx shadcn add @vabole/clerk-convex-starter
+pnpx shadcn add @vabole/clerk-convex-starter
 ```
 
 **What gets installed:**
@@ -52,7 +52,7 @@ npx shadcn add @vabole/clerk-convex-starter
 1. Create a [Clerk](https://clerk.com) account and application
 2. Create a [Convex](https://convex.dev) deployment
 3. Configure environment variables (see template's `.env.example`)
-4. Run `npx convex dev` to deploy Convex functions
+4. Run `pnpx convex dev` to deploy Convex functions
 5. Run `pnpm dev` to start your app
 
 For detailed setup instructions, see the [Clerk + Convex integration guide](https://clerk.com/docs/guides/development/integrations/databases/convex).
@@ -65,10 +65,10 @@ Install templates from this registry into your Next.js project:
 
 ```bash
 # Method 1: Direct URL to JSON file (recommended)
-npx shadcn add https://registry-pi-black.vercel.app/r/clerk-convex-starter.json
+pnpx shadcn add https://registry-pi-black.vercel.app/r/clerk-convex-starter.json
 
 # Method 2: After configuring registry (see below)
-npx shadcn add @vabole/clerk-convex-starter
+pnpx shadcn add @vabole/clerk-convex-starter
 ```
 
 ### For Registry Maintainers
@@ -109,7 +109,7 @@ git push origin main
 
 1. **Registry Site**: This Next.js app showcases available templates
 2. **Registry Configuration**: `registry.json` defines all templates and their files
-3. **Distribution**: When users run `npx shadcn add`, the CLI:
+3. **Distribution**: When users run `pnpx shadcn add`, the CLI:
    - Fetches the registry configuration
    - Downloads specified template files
    - Installs dependencies

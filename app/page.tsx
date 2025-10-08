@@ -20,7 +20,7 @@ export default function Home() {
           <div className="mt-4 flex flex-col gap-2">
             <h3 className="font-semibold">Installation</h3>
             <code className="text-sm bg-muted p-3 rounded-md block overflow-x-auto">
-              npx shadcn add https://registry-pi-black.vercel.app/r/clerk-convex-starter.json
+              pnpx shadcn add https://registry-pi-black.vercel.app/r/clerk-convex-starter.json
             </code>
           </div>
 
@@ -42,7 +42,7 @@ export default function Home() {
               <li>Create a Clerk account and application</li>
               <li>Create a Convex deployment</li>
               <li>Configure environment variables</li>
-              <li>Run <code className="bg-muted px-1">npx convex dev</code> to deploy functions</li>
+              <li>Run <code className="bg-muted px-1">pnpx convex dev</code> to deploy functions</li>
             </ul>
           </div>
         </div>
