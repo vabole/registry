@@ -101,6 +101,9 @@ pnpm dev
 # Smoke test the Clerk + Convex template
 pnpm template:test
 
+# Non-interactive install (skips prompts)
+pnpm dlx shadcn@latest add --yes --overwrite public/r/clerk-convex-starter.json
+
 # Build the registry
 pnpm run registry:build
 
