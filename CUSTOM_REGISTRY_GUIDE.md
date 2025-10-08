@@ -164,6 +164,10 @@ pnpx shadcn add https://your-registry-url/r/clerk-convex-core.json
 
 # Step 2 (optional): Tailwind/shadcn UI layer
 pnpx shadcn add https://your-registry-url/r/clerk-convex-starter.json
+
+# One-liner to install both
+pnpx shadcn add https://your-registry-url/r/clerk-convex-core.json \
+  && pnpx shadcn add https://your-registry-url/r/clerk-convex-starter.json
 ```
 
 ---

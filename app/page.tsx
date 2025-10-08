@@ -109,9 +109,15 @@ export default function Home() {
           </div>
 
           <div className="space-y-2">
+            <h3 className="font-semibold">Quick install</h3>
+            <CodeBlock>pnpx shadcn add https://registry-pi-black.vercel.app/r/clerk-convex-core.json \  && pnpx shadcn add https://registry-pi-black.vercel.app/r/clerk-convex-starter.json</CodeBlock>
+          </div>
+
+          <div className="space-y-2">
             <h3 className="font-semibold">Non-interactive install</h3>
             <CodeBlock>pnpm dlx shadcn@latest add --yes --overwrite public/r/clerk-convex-core.json</CodeBlock>
             <CodeBlock>pnpm dlx shadcn@latest add --yes --overwrite public/r/clerk-convex-starter.json</CodeBlock>
+            <CodeBlock>pnpm dlx shadcn@latest add --yes --overwrite public/r/clerk-convex-core.json \  && pnpm dlx shadcn@latest add --yes --overwrite public/r/clerk-convex-starter.json</CodeBlock>
           </div>
         </article>
       </section>

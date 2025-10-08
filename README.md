@@ -86,6 +86,10 @@ pnpx shadcn add https://registry-pi-black.vercel.app/r/clerk-convex-starter.json
 # After configuring the registry alias you can use short names
 pnpx shadcn add @vabole/clerk-convex-core
 pnpx shadcn add @vabole/clerk-convex-starter
+
+# Quick one-liner for both blocks (interactive prompts)
+pnpx shadcn add https://registry-pi-black.vercel.app/r/clerk-convex-core.json \
+  && pnpx shadcn add https://registry-pi-black.vercel.app/r/clerk-convex-starter.json
 ```
 
 ### For Registry Maintainers
@@ -123,6 +127,10 @@ pnpm template:test
 # Non-interactive install (core + UI, skips prompts)
 pnpm dlx shadcn@latest add --yes --overwrite public/r/clerk-convex-core.json
 pnpm dlx shadcn@latest add --yes --overwrite public/r/clerk-convex-starter.json
+
+# Shell one-liner (non-interactive)
+pnpm dlx shadcn@latest add --yes --overwrite public/r/clerk-convex-core.json \
+  && pnpm dlx shadcn@latest add --yes --overwrite public/r/clerk-convex-starter.json
 
 # Build the registry
 pnpm run registry:build
