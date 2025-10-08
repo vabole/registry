@@ -43,12 +43,19 @@
         {
           "path": "registry/new-york/blocks/clerk-convex-starter/convex/schema.ts",
           "type": "registry:file",
-          "target": "convex/schema.ts"
+          "target": "convex/schema.ts",
+          "content": "import { defineSchema, defineTable } from 'convex/server'\nimport { v } from 'convex/values'\n\nexport default defineSchema({\n  users: defineTable({\n    clerkId: v.string(),\n    email: v.optional(v.string()),\n    name: v.optional(v.string()),\n    imageUrl: v.optional(v.string()),\n  }).index('by_clerkId', ['clerkId']),\n  messages: defineTable({\n    body: v.string(),\n    authorId: v.string(),\n    authorName: v.optional(v.string()),\n  })\n    .index('by_authorId', ['authorId'])\n    .index('by_creationTime', ['_creationTime']),\n})\n"
         },
         {
           "path": "registry/new-york/blocks/clerk-convex-starter/convex/messages.ts",
           "type": "registry:file",
-          "target": "convex/messages.ts"
+          "target": "convex/messages.ts",
+          "content": "import { v } from 'convex/values'\nimport { query, mutation } from './_generated/server'\n\nexport const getForCurrentUser = query({\n  args: {},\n  handler: async (ctx) => {\n    const identity = await ctx.auth.getUserIdentity()\n    if (!identity) {\n      throw new Error('Not authenticated')\n    }\n\n    return await ctx.db\n      .query('messages')\n      .withIndex('by_authorId', (q) => q.eq('authorId', identity.subject))\n      .order('desc')\n      .take(100)\n  },\n})\n\nexport const send = mutation({\n  args: { body: v.string() },\n  handler: async (ctx, args) => {\n    const identity = await ctx.auth.getUserIdentity()\n    if (!identity) {\n      throw new Error('Not authenticated')\n    }\n\n    const userRecord = await ctx.db\n      .query('users')\n      .withIndex('by_clerkId', (q) => q.eq('clerkId', identity.subject))\n      .unique()\n\n    await ctx.db.insert('messages', {\n      body: args.body,\n      authorId: identity.subject,\n      authorName: userRecord?.name ?? identity.name ?? 'Anonymous',\n    })\n  },\n})\n\nexport const list = query({\n  args: {},\n  handler: async (ctx) => {\n    return await ctx.db.query('messages').order('desc').take(100)\n  },\n})\n"
+        },
+        {
+          "path": "registry/new-york/blocks/clerk-convex-starter/convex/users.ts",
+          "type": "registry:file",
+          "target": "convex/users.ts"
         },
         {
           "path": "registry/new-york/blocks/clerk-convex-starter/convex/tsconfig.json",
@@ -80,7 +87,9 @@
         "next-themes",
         "lucide-react"
       ],
-      "registryDependencies": ["button"],
+      "registryDependencies": [
+        "button"
+      ],
       "files": [
         {
           "path": "registry/new-york/blocks/clerk-quickstart/layouts/layout-with-header.tsx",
@@ -129,7 +138,9 @@
       "type": "registry:component",
       "title": "Hello World",
       "description": "A simple hello world component",
-      "registryDependencies": ["button"],
+      "registryDependencies": [
+        "button"
+      ],
       "files": [
         {
           "path": "registry/new-york/blocks/hello-world/hello-world.tsx",
@@ -142,8 +153,16 @@
       "type": "registry:component",
       "title": "Example Form",
       "description": "A contact form with Zod validation.",
-      "dependencies": ["zod"],
-      "registryDependencies": ["button", "input", "label", "textarea", "card"],
+      "dependencies": [
+        "zod"
+      ],
+      "registryDependencies": [
+        "button",
+        "input",
+        "label",
+        "textarea",
+        "card"
+      ],
       "files": [
         {
           "path": "registry/new-york/blocks/example-form/example-form.tsx",
@@ -156,7 +175,9 @@
       "type": "registry:component",
       "title": "Complex Component",
       "description": "A complex component showing hooks, libs and components.",
-      "registryDependencies": ["card"],
+      "registryDependencies": [
+        "card"
+      ],
       "files": [
         {
           "path": "registry/new-york/blocks/complex-component/page.tsx",

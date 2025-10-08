@@ -51,6 +51,11 @@
           "target": "convex/messages.ts"
         },
         {
+          "path": "registry/new-york/blocks/clerk-convex-starter/convex/users.ts",
+          "type": "registry:file",
+          "target": "convex/users.ts"
+        },
+        {
           "path": "registry/new-york/blocks/clerk-convex-starter/convex/tsconfig.json",
           "type": "registry:file",
           "target": "convex/tsconfig.json"
