@@ -23,9 +23,22 @@ A complete Next.js application template with:
 - ✅ Middleware for route protection
 - ✅ TypeScript + Tailwind CSS
 
-**Installation:**
+**Installation (Direct URL):**
 ```bash
-npx shadcn add https://registry-pi-black.vercel.app clerk-convex-starter
+npx shadcn add https://registry-pi-black.vercel.app/r/clerk-convex-starter.json
+```
+
+**Or configure as a registry in your `components.json`:**
+```json
+{
+  "registries": {
+    "@vabole": "https://registry-pi-black.vercel.app/r/{name}.json"
+  }
+}
+```
+Then install with:
+```bash
+npx shadcn add @vabole/clerk-convex-starter
 ```
 
 **What gets installed:**
@@ -51,11 +64,11 @@ For detailed setup instructions, see the [Clerk + Convex integration guide](http
 Install templates from this registry into your Next.js project:
 
 ```bash
-# Install the Clerk + Convex starter
-npx shadcn add https://registry-pi-black.vercel.app clerk-convex-starter
+# Method 1: Direct URL to JSON file (recommended)
+npx shadcn add https://registry-pi-black.vercel.app/r/clerk-convex-starter.json
 
-# Or any other available template
-npx shadcn add https://registry-pi-black.vercel.app <template-name>
+# Method 2: After configuring registry (see below)
+npx shadcn add @vabole/clerk-convex-starter
 ```
 
 ### For Registry Maintainers
