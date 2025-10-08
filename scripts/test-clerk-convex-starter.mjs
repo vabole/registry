@@ -24,7 +24,7 @@ async function main() {
   run("pnpm", ["install", "--prefer-offline"], { cwd: workDir });
 
   console.log("• Applying Clerk + Convex template…");
-  run("pnpm", ["dlx", "shadcn@latest", "add", "--yes", registryItemPath], {
+  run("pnpm", ["dlx", "shadcn@latest", "add", "--yes", "--overwrite", registryItemPath], {
     cwd: workDir,
   });
 
