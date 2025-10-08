@@ -65,8 +65,7 @@
         "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_...",
         "CLERK_SECRET_KEY": "sk_test_...",
         "CLERK_FRONTEND_API_URL": "https://your-app.clerk.accounts.dev",
-        "NEXT_PUBLIC_CONVEX_URL": "https://your-deployment.convex.cloud",
-        "CONVEX_DEPLOY_KEY": "your-deploy-key"
+        "NEXT_PUBLIC_CONVEX_URL": "https://your-deployment.convex.cloud"
       },
       "docs": "https://clerk.com/docs/guides/development/integrations/databases/convex"
     },

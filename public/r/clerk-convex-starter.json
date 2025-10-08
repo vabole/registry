@@ -61,7 +61,7 @@
     },
     {
       "path": "registry/new-york/blocks/clerk-convex-starter/env.example",
-      "content": "# Clerk Authentication\n# Get these from https://dashboard.clerk.com\nNEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_...\nCLERK_SECRET_KEY=sk_test_...\n\n# Clerk Frontend API URL (for JWT validation with Convex)\n# In development: https://verb-noun-00.clerk.accounts.dev\n# In production: https://clerk.<your-domain>.com\nCLERK_FRONTEND_API_URL=https://your-app.clerk.accounts.dev\n\n# Convex\n# Get this from https://dashboard.convex.dev\nNEXT_PUBLIC_CONVEX_URL=https://your-deployment.convex.cloud\nCONVEX_DEPLOY_KEY=your-deploy-key\n",
+      "content": "# Clerk Authentication\n# Get these from https://dashboard.clerk.com\nNEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_...\nCLERK_SECRET_KEY=sk_test_...\n\n# Clerk Frontend API URL (for JWT validation with Convex)\n# In development: https://verb-noun-00.clerk.accounts.dev\n# In production: https://clerk.<your-domain>.com\nCLERK_FRONTEND_API_URL=https://your-app.clerk.accounts.dev\n\n# Convex\n# Get this from https://dashboard.convex.dev\nNEXT_PUBLIC_CONVEX_URL=https://your-deployment.convex.cloud\n",
       "type": "registry:file",
       "target": ".env.example"
     }
@@ -70,8 +70,7 @@
     "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_...",
     "CLERK_SECRET_KEY": "sk_test_...",
     "CLERK_FRONTEND_API_URL": "https://your-app.clerk.accounts.dev",
-    "NEXT_PUBLIC_CONVEX_URL": "https://your-deployment.convex.cloud",
-    "CONVEX_DEPLOY_KEY": "your-deploy-key"
+    "NEXT_PUBLIC_CONVEX_URL": "https://your-deployment.convex.cloud"
   },
   "docs": "https://clerk.com/docs/guides/development/integrations/databases/convex"
 }
