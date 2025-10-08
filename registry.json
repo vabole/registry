@@ -1,8 +1,63 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
-  "name": "acme",
-  "homepage": "https://acme.com",
+  "name": "vabole",
+  "homepage": "https://github.com/vabole",
   "items": [
+    {
+      "name": "clerk-quickstart",
+      "type": "registry:block",
+      "title": "Clerk Next.js Quickstart (App Router)",
+      "description": "Complete authentication setup with Clerk for Next.js App Router. Includes sign-in/sign-up pages, middleware, header with auth buttons, and dark mode support.",
+      "dependencies": [
+        "@clerk/nextjs",
+        "@clerk/themes",
+        "next-themes",
+        "lucide-react"
+      ],
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/clerk-quickstart/layouts/layout-with-header.tsx",
+          "type": "registry:page",
+          "target": "app/layout.tsx"
+        },
+        {
+          "path": "registry/new-york/blocks/clerk-quickstart/pages/sign-in-page.tsx",
+          "type": "registry:page",
+          "target": "app/sign-in/[[...sign-in]]/page.tsx"
+        },
+        {
+          "path": "registry/new-york/blocks/clerk-quickstart/pages/sign-up-page.tsx",
+          "type": "registry:page",
+          "target": "app/sign-up/[[...sign-up]]/page.tsx"
+        },
+        {
+          "path": "registry/new-york/blocks/clerk-quickstart/files/middleware.ts",
+          "type": "registry:file",
+          "target": "src/middleware.ts"
+        },
+        {
+          "path": "registry/new-york/blocks/clerk-quickstart/components/clerk-provider.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/new-york/blocks/clerk-quickstart/components/header.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/new-york/blocks/clerk-quickstart/components/theme-provider.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "css": {
+        "@import \"@clerk/themes/shadcn.css\"": {}
+      },
+      "envVars": {
+        "NEXT_PUBLIC_CLERK_SIGN_IN_URL": "/sign-in",
+        "NEXT_PUBLIC_CLERK_SIGN_UP_URL": "/sign-up"
+      },
+      "docs": "https://clerk.com/docs/quickstarts/nextjs"
+    },
     {
       "name": "hello-world",
       "type": "registry:component",
