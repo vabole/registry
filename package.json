@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "registry:build": "shadcn build"
+    "registry:build": "shadcn build",
+    "template:test": "node scripts/test-clerk-convex-starter.mjs"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.33.3",

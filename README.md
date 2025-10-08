@@ -98,6 +98,9 @@ pnpm install
 # Run dev server (showcase site)
 pnpm dev
 
+# Smoke test the Clerk + Convex template
+pnpm template:test
+
 # Build the registry
 pnpm run registry:build
 

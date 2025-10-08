@@ -66,6 +66,15 @@ cat public/r/clerk-quickstart.json | jq '.'
 node ../preview.mjs clerk-quickstart
 ```
 
+### Method 3: Smoke test the Clerk + Convex starter locally
+
+```bash
+# Run from the registry root
+pnpm template:test
+```
+
+This spins up a throwaway Next.js app, applies the template via the local registry entry, and runs `convex typecheck` to make sure the backend compiles.
+
 ---
 
 ## 🚀 Deploying Your Registry
