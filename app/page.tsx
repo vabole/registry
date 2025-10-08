@@ -4,10 +4,10 @@ const CodeBlock = ({ children }: { children: React.ReactNode }) => (
   <code className="text-sm bg-muted p-3 rounded-md block overflow-x-auto">{children}</code>
 )
 
-const List = ({ items }: { items: React.ReactNode[] }) => (
+const List = ({ items }: { items: { key: string; content: React.ReactNode }[] }) => (
   <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
-    {items.map((item, idx) => (
-      <li key={idx}>{item}</li>
+    {items.map((item) => (
+      <li key={item.key}>{item.content}</li>
     ))}
   </ul>
 )
@@ -45,11 +45,11 @@ export default function Home() {
             <h3 className="font-semibold">What&apos;s included</h3>
             <List
               items={[
-                'Minimal landing page that keeps users in place until sign-in',
-                'Convex schema, queries, mutations, and middleware',
-                'Convex + Clerk provider wrapper',
-                'Neutral base styles in `app/globals.css`',
-                'Environment variable hints for Clerk + Convex',
+                { key: 'core-landing', content: 'Minimal landing page that keeps users in place until sign-in' },
+                { key: 'core-convex', content: 'Convex schema, queries, mutations, and middleware' },
+                { key: 'core-provider', content: 'Convex + Clerk provider wrapper' },
+                { key: 'core-globals', content: 'Neutral base styles in `app/globals.css`' },
+                { key: 'core-env', content: 'Environment variable hints for Clerk + Convex' },
               ]}
             />
           </div>
@@ -58,11 +58,25 @@ export default function Home() {
             <h3 className="font-semibold">Next steps</h3>
             <List
               items={[
-                <>Create apps in <a className="underline hover:text-foreground" href="https://clerk.com" target="_blank" rel="noreferrer">Clerk</a> and <a className="underline hover:text-foreground" href="https://convex.dev" target="_blank" rel="noreferrer">Convex</a></>,
-                'Configure `CLERK_JWT_ISSUER_DOMAIN` & `NEXT_PUBLIC_CONVEX_URL`',
-                'Ensure your Clerk JWT template includes `{ "aud": "convex" }`',
-                <code className="bg-muted px-1 py-0.5">pnpx convex dev</code>,
-                <code className="bg-muted px-1 py-0.5">pnpm dev</code>,
+                {
+                  key: 'core-accounts',
+                  content: (
+                    <>
+                      Create apps in{' '}
+                      <a className="underline hover:text-foreground" href="https://clerk.com" target="_blank" rel="noreferrer">
+                        Clerk
+                      </a>{' '}
+                      and{' '}
+                      <a className="underline hover:text-foreground" href="https://convex.dev" target="_blank" rel="noreferrer">
+                        Convex
+                      </a>
+                    </>
+                  ),
+                },
+                { key: 'core-env-vars', content: 'Configure `CLERK_JWT_ISSUER_DOMAIN` & `NEXT_PUBLIC_CONVEX_URL`' },
+                { key: 'core-audience', content: 'Ensure your Clerk JWT template includes `{ "aud": "convex" }`' },
+                { key: 'core-sync', content: <code className="bg-muted px-1 py-0.5">pnpx convex dev</code> },
+                { key: 'core-dev', content: <code className="bg-muted px-1 py-0.5">pnpm dev</code> },
               ]}
             />
           </div>
@@ -86,10 +100,10 @@ export default function Home() {
             <h3 className="font-semibold">What this layer replaces</h3>
             <List
               items={[
-                '`app/layout.tsx` to apply Geist fonts + Tailwind classes',
-                '`app/page.tsx` with the marketing hero and dashboard UI',
-                '`app/globals.css` (Tailwind theme tokens + animations)',
-                '`postcss.config.mjs` for Tailwind processing',
+                { key: 'ui-layout', content: '`app/layout.tsx` to apply Geist fonts + Tailwind classes' },
+                { key: 'ui-page', content: '`app/page.tsx` with the marketing hero and dashboard UI' },
+                { key: 'ui-globals', content: '`app/globals.css` (Tailwind theme tokens + animations)' },
+                { key: 'ui-postcss', content: '`postcss.config.mjs` for Tailwind processing' },
               ]}
             />
           </div>
@@ -107,28 +121,32 @@ export default function Home() {
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
           {[
             {
+              key: 'docs-core',
               label: 'Clerk + Convex core docs',
               href: 'https://docs.convex.dev/auth/clerk',
               description: 'Official Convex guide for configuring Clerk issuers and JWT claims.',
             },
             {
+              key: 'docs-ui',
               label: 'Clerk + Convex starter UI docs',
               href: 'https://clerk.com/docs/guides/development/integrations/databases/convex',
               description: 'Clerk’s walkthrough for wiring the App Router + Convex.',
             },
             {
+              key: 'docs-repo',
               label: 'Repository',
               href: 'https://github.com/vabole/registry',
               description: 'Browse source, smoke tests, and contribution guide.',
             },
             {
+              key: 'docs-smoketest',
               label: 'Smoke test command',
               href: 'https://github.com/vabole/registry#development',
               description: 'Run `pnpm template:test` locally to validate both blocks end-to-end.',
             },
           ].map((link) => (
             <a
-              key={link.href}
+              key={link.key}
               href={link.href}
               target="_blank"
               rel="noreferrer"
