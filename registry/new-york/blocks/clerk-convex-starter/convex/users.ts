@@ -8,10 +8,18 @@ export const ensure = mutation({
       throw new Error('Not authenticated')
     }
 
+    const nameFromIdentity = identity.name?.trim()
+    const composedName = [identity.givenName, identity.familyName]
+      .filter((part): part is string => Boolean(part?.trim()))
+      .join(' ')
+      .trim()
+    const fallbackName = identity.email ?? identity.subject
+    const displayName = nameFromIdentity || composedName || fallbackName
+
     const userData = {
       clerkId: identity.subject,
       email: identity.email ?? undefined,
-      name: identity.name ?? undefined,
+      name: displayName,
       imageUrl: identity.pictureUrl ?? undefined,
     }
 

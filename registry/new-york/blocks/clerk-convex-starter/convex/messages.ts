@@ -30,10 +30,22 @@ export const send = mutation({
       .withIndex('by_clerkId', (q) => q.eq('clerkId', identity.subject))
       .unique()
 
+    const composedName = [identity.givenName, identity.familyName]
+      .filter((part): part is string => Boolean(part?.trim()))
+      .join(' ')
+      .trim()
+
+    const authorName =
+      userRecord?.name ??
+      identity.name?.trim() ??
+      (composedName || undefined) ??
+      identity.email ??
+      'Anonymous'
+
     await ctx.db.insert('messages', {
       body: args.body,
       authorId: identity.subject,
-      authorName: userRecord?.name ?? identity.name ?? 'Anonymous',
+      authorName,
     })
   },
 })
