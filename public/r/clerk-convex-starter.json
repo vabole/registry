@@ -1,0 +1,77 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "clerk-convex-starter",
+  "type": "registry:block",
+  "title": "Clerk + Convex Starter",
+  "description": "Complete Next.js starter with Clerk authentication and Convex backend. Includes auth UI, real-time database, and example queries.",
+  "dependencies": [
+    "@clerk/nextjs",
+    "convex",
+    "convex-helpers"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/new-york/blocks/clerk-convex-starter/layout.tsx",
+      "content": "import type { Metadata } from \"next\";\nimport { Geist, Geist_Mono } from \"next/font/google\";\nimport { ClerkProvider } from \"@clerk/nextjs\";\nimport ConvexClientProvider from \"@/components/convex-client-provider\";\nimport \"./globals.css\";\n\nconst geistSans = Geist({\n  variable: \"--font-geist-sans\",\n  subsets: [\"latin\"],\n});\n\nconst geistMono = Geist_Mono({\n  variable: \"--font-geist-mono\",\n  subsets: [\"latin\"],\n});\n\nexport const metadata: Metadata = {\n  title: \"Clerk + Convex Starter\",\n  description: \"A Next.js app with Clerk authentication and Convex backend\",\n};\n\nexport default function RootLayout({\n  children,\n}: Readonly<{\n  children: React.ReactNode;\n}>) {\n  return (\n    <ClerkProvider>\n      <html lang=\"en\">\n        <body\n          className={`${geistSans.variable} ${geistMono.variable} antialiased`}\n        >\n          <ConvexClientProvider>{children}</ConvexClientProvider>\n        </body>\n      </html>\n    </ClerkProvider>\n  );\n}\n",
+      "type": "registry:page",
+      "target": "app/layout.tsx"
+    },
+    {
+      "path": "registry/new-york/blocks/clerk-convex-starter/page.tsx",
+      "content": "'use client'\n\nimport { Authenticated, Unauthenticated, AuthLoading } from 'convex/react'\nimport { SignInButton, UserButton } from '@clerk/nextjs'\nimport { useQuery, useMutation } from 'convex/react'\nimport { api } from '@/convex/_generated/api'\nimport { useState } from 'react'\n\nexport default function Home() {\n  return (\n    <div className=\"max-w-3xl mx-auto flex flex-col min-h-svh px-4 py-8 gap-8\">\n      <header className=\"flex flex-col gap-1\">\n        <h1 className=\"text-3xl font-bold tracking-tight\">Clerk + Convex Starter</h1>\n        <p className=\"text-muted-foreground\">\n          A Next.js template with Clerk authentication and Convex backend\n        </p>\n      </header>\n\n      <AuthLoading>\n        <div className=\"flex items-center justify-center min-h-[400px]\">\n          <p className=\"text-muted-foreground\">Loading...</p>\n        </div>\n      </AuthLoading>\n\n      <Unauthenticated>\n        <main className=\"flex flex-col flex-1 items-center justify-center gap-4\">\n          <h2 className=\"text-2xl font-semibold\">Welcome!</h2>\n          <p className=\"text-muted-foreground\">Sign in to get started</p>\n          <SignInButton mode=\"modal\">\n            <button className=\"px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90\">\n              Sign In\n            </button>\n          </SignInButton>\n        </main>\n      </Unauthenticated>\n\n      <Authenticated>\n        <div className=\"flex items-center justify-between border-b pb-4\">\n          <h2 className=\"text-xl font-semibold\">Dashboard</h2>\n          <UserButton />\n        </div>\n        <Content />\n      </Authenticated>\n    </div>\n  )\n}\n\nfunction Content() {\n  const messages = useQuery(api.messages.list)\n  const userMessages = useQuery(api.messages.getForCurrentUser)\n  const sendMessage = useMutation(api.messages.send)\n  const [messageText, setMessageText] = useState('')\n\n  const handleSend = async (e: React.FormEvent) => {\n    e.preventDefault()\n    if (!messageText.trim()) return\n    await sendMessage({ body: messageText })\n    setMessageText('')\n  }\n\n  return (\n    <main className=\"flex flex-col flex-1 gap-8\">\n      <div className=\"border rounded-lg p-6\">\n        <h3 className=\"text-lg font-semibold mb-4\">Your Messages ({userMessages?.length ?? 0})</h3>\n        <form onSubmit={handleSend} className=\"flex gap-2 mb-4\">\n          <input\n            type=\"text\"\n            value={messageText}\n            onChange={(e) => setMessageText(e.target.value)}\n            placeholder=\"Type a message...\"\n            className=\"flex-1 px-3 py-2 border rounded-md\"\n          />\n          <button\n            type=\"submit\"\n            className=\"px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90\"\n          >\n            Send\n          </button>\n        </form>\n        <div className=\"space-y-2\">\n          {userMessages?.map((msg: any) => (\n            <div key={msg._id} className=\"p-3 bg-muted rounded-md\">\n              <p className=\"text-sm\">{msg.body}</p>\n              <p className=\"text-xs text-muted-foreground mt-1\">By: {msg.authorName}</p>\n            </div>\n          ))}\n          {userMessages?.length === 0 && (\n            <p className=\"text-sm text-muted-foreground\">No messages yet. Send one above!</p>\n          )}\n        </div>\n      </div>\n\n      <div className=\"border rounded-lg p-6\">\n        <h3 className=\"text-lg font-semibold mb-4\">All Messages ({messages?.length ?? 0})</h3>\n        <div className=\"space-y-2\">\n          {messages?.map((msg: any) => (\n            <div key={msg._id} className=\"p-3 bg-muted rounded-md\">\n              <p className=\"text-sm\">{msg.body}</p>\n              <p className=\"text-xs text-muted-foreground mt-1\">By: {msg.authorName}</p>\n            </div>\n          ))}\n          {messages?.length === 0 && (\n            <p className=\"text-sm text-muted-foreground\">No messages yet.</p>\n          )}\n        </div>\n      </div>\n    </main>\n  )\n}\n",
+      "type": "registry:page",
+      "target": "app/page.tsx"
+    },
+    {
+      "path": "registry/new-york/blocks/clerk-convex-starter/middleware.ts",
+      "content": "import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server'\n\nconst isPublicRoute = createRouteMatcher(['/sign-in(.*)', '/sign-up(.*)'])\n\nexport default clerkMiddleware(async (auth, request) => {\n  if (!isPublicRoute(request)) {\n    await auth.protect()\n  }\n})\n\nexport const config = {\n  matcher: [\n    // Skip Next.js internals and all static files, unless found in search params\n    '/((?!_next|[^?]*\\\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)',\n    // Always run for API routes\n    '/(api|trpc)(.*)',\n  ],\n}\n",
+      "type": "registry:file",
+      "target": "middleware.ts"
+    },
+    {
+      "path": "registry/new-york/blocks/clerk-convex-starter/convex-client-provider.tsx",
+      "content": "'use client'\n\nimport { ReactNode } from 'react'\nimport { ConvexReactClient } from 'convex/react'\nimport { ConvexProviderWithClerk } from 'convex/react-clerk'\nimport { useAuth } from '@clerk/nextjs'\n\nif (!process.env.NEXT_PUBLIC_CONVEX_URL) {\n  throw new Error('Missing NEXT_PUBLIC_CONVEX_URL in your .env file')\n}\n\nconst convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL)\n\nexport default function ConvexClientProvider({ children }: { children: ReactNode }) {\n  return (\n    <ConvexProviderWithClerk client={convex} useAuth={useAuth}>\n      {children}\n    </ConvexProviderWithClerk>\n  )\n}\n",
+      "type": "registry:component",
+      "target": "components/convex-client-provider.tsx"
+    },
+    {
+      "path": "registry/new-york/blocks/clerk-convex-starter/convex/auth.config.js",
+      "content": "export default {\n  providers: [\n    {\n      domain: process.env.CLERK_FRONTEND_API_URL,\n      applicationID: 'convex',\n    },\n  ],\n}\n",
+      "type": "registry:file",
+      "target": "convex/auth.config.js"
+    },
+    {
+      "path": "registry/new-york/blocks/clerk-convex-starter/convex/schema.ts",
+      "content": "import { defineSchema, defineTable } from 'convex/server'\nimport { v } from 'convex/values'\n\nexport default defineSchema({\n  messages: defineTable({\n    body: v.string(),\n    author: v.string(),\n    authorName: v.string(),\n  }),\n})\n",
+      "type": "registry:file",
+      "target": "convex/schema.ts"
+    },
+    {
+      "path": "registry/new-york/blocks/clerk-convex-starter/convex/messages.ts",
+      "content": "import { v } from 'convex/values'\nimport { query, mutation } from './_generated/server'\n\n/**\n * Example query that requires authentication\n * Returns messages for the current user\n */\nexport const getForCurrentUser = query({\n  args: {},\n  handler: async (ctx) => {\n    const identity = await ctx.auth.getUserIdentity()\n    if (identity === null) {\n      throw new Error('Not authenticated')\n    }\n    return await ctx.db\n      .query('messages')\n      .filter((q) => q.eq(q.field('author'), identity.email))\n      .collect()\n  },\n})\n\n/**\n * Example mutation to create a message\n */\nexport const send = mutation({\n  args: { body: v.string() },\n  handler: async (ctx, args) => {\n    const identity = await ctx.auth.getUserIdentity()\n    if (identity === null) {\n      throw new Error('Not authenticated')\n    }\n    await ctx.db.insert('messages', {\n      body: args.body,\n      author: identity.email ?? 'Anonymous',\n      authorName: identity.name ?? 'Anonymous',\n    })\n  },\n})\n\n/**\n * Example query that doesn't require authentication\n * Returns all messages\n */\nexport const list = query({\n  args: {},\n  handler: async (ctx) => {\n    return await ctx.db.query('messages').order('desc').take(100)\n  },\n})\n",
+      "type": "registry:file",
+      "target": "convex/messages.ts"
+    },
+    {
+      "path": "registry/new-york/blocks/clerk-convex-starter/convex/tsconfig.json",
+      "content": "{\n  \"extends\": \"../tsconfig.json\",\n  \"compilerOptions\": {\n    \"module\": \"ES2022\",\n    \"moduleResolution\": \"Bundler\",\n    \"paths\": {\n      \"@/*\": [\"../*\"]\n    }\n  },\n  \"include\": [\".\"]\n}\n",
+      "type": "registry:file",
+      "target": "convex/tsconfig.json"
+    },
+    {
+      "path": "registry/new-york/blocks/clerk-convex-starter/env.example",
+      "content": "# Clerk Authentication\n# Get these from https://dashboard.clerk.com\nNEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_...\nCLERK_SECRET_KEY=sk_test_...\n\n# Clerk Frontend API URL (for JWT validation with Convex)\n# In development: https://verb-noun-00.clerk.accounts.dev\n# In production: https://clerk.<your-domain>.com\nCLERK_FRONTEND_API_URL=https://your-app.clerk.accounts.dev\n\n# Convex\n# Get this from https://dashboard.convex.dev\nNEXT_PUBLIC_CONVEX_URL=https://your-deployment.convex.cloud\nCONVEX_DEPLOY_KEY=your-deploy-key\n",
+      "type": "registry:file",
+      "target": ".env.example"
+    }
+  ],
+  "envVars": {
+    "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_...",
+    "CLERK_SECRET_KEY": "sk_test_...",
+    "CLERK_FRONTEND_API_URL": "https://your-app.clerk.accounts.dev",
+    "NEXT_PUBLIC_CONVEX_URL": "https://your-deployment.convex.cloud",
+    "CONVEX_DEPLOY_KEY": "your-deploy-key"
+  },
+  "docs": "https://clerk.com/docs/guides/development/integrations/databases/convex"
+}
