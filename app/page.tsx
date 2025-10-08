@@ -18,38 +18,42 @@ export default function Home() {
       <header className="flex flex-col gap-2">
         <p className="text-sm font-semibold uppercase tracking-wide text-primary">Custom Registry</p>
         <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
-          Clerk + Convex templates you can compose like Lego
+          One command to launch Clerk + Convex
         </h1>
         <p className="text-muted-foreground max-w-2xl">
-          Start with a minimal Convex + Clerk integration, then layer on the Tailwind/shadcn UI when you&apos;re ready.
-          Each block installs through the shadcn CLI, so you can mix, match, and automate without leaving your terminal.
+          Ship a landing page, authentication flow, and realtime Convex backend in a single shadcn install. Need more UI
+          later? Pull components straight from <a className="underline hover:text-foreground" href="https://ui.shadcn.com" target="_blank" rel="noreferrer">ui.shadcn.com</a>.
         </p>
       </header>
-
       <section className="grid gap-6 md:grid-cols-2">
         <article className="flex flex-col gap-4 rounded-3xl border bg-card p-6 shadow-sm">
           <div className="space-y-2">
-            <h2 className="text-2xl font-semibold">Clerk + Convex Core</h2>
+            <h2 className="text-2xl font-semibold">Clerk + Convex Starter</h2>
             <p className="text-sm text-muted-foreground">
-              Everything you need to wire Clerk authentication to a Convex backend. Inline styling keeps it framework-agnostic.
+              Installs the Convex backend wiring, Clerk auth hooks, and a Tailwind-powered landing experience in one go.
             </p>
           </div>
 
           <div className="space-y-2">
             <h3 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground">Install</h3>
-            <CodeBlock>pnpx shadcn add https://registry-pi-black.vercel.app/r/clerk-convex-core.json</CodeBlock>
-            <CodeBlock>pnpx shadcn add @vabole/clerk-convex-core</CodeBlock>
+            <CodeBlock>pnpx shadcn add https://registry-pi-black.vercel.app/r/clerk-convex-starter.json</CodeBlock>
+            <CodeBlock>pnpx shadcn add @vabole/clerk-convex-starter</CodeBlock>
+          </div>
+
+          <div className="space-y-2">
+            <h3 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground">Non-interactive</h3>
+            <CodeBlock>pnpm dlx shadcn@latest add --yes --overwrite public/r/clerk-convex-starter.json</CodeBlock>
           </div>
 
           <div className="space-y-2">
             <h3 className="font-semibold">What&apos;s included</h3>
             <List
               items={[
-                { key: 'core-landing', content: 'Minimal landing page that keeps users in place until sign-in' },
-                { key: 'core-convex', content: 'Convex schema, queries, mutations, and middleware' },
-                { key: 'core-provider', content: 'Convex + Clerk provider wrapper' },
-                { key: 'core-globals', content: 'Neutral base styles in `app/globals.css`' },
-                { key: 'core-env', content: 'Environment variable hints for Clerk + Convex' },
+                { key: 'starter-landing', content: 'Hero section, dashboard UI, and realtime message board' },
+                { key: 'starter-convex', content: 'Convex schema, queries, mutations, and project tsconfig' },
+                { key: 'starter-provider', content: 'Convex + Clerk provider wrapper' },
+                { key: 'starter-globals', content: 'Tailwind 4 tokens and animations in `app/globals.css`' },
+                { key: 'starter-env', content: 'Environment scaffolding (`.env.example`, middleware, Convex config)' },
               ]}
             />
           </div>
@@ -59,7 +63,7 @@ export default function Home() {
             <List
               items={[
                 {
-                  key: 'core-accounts',
+                  key: 'starter-accounts',
                   content: (
                     <>
                       Create apps in{' '}
@@ -73,10 +77,10 @@ export default function Home() {
                     </>
                   ),
                 },
-                { key: 'core-env-vars', content: 'Configure `CLERK_JWT_ISSUER_DOMAIN` & `NEXT_PUBLIC_CONVEX_URL`' },
-                { key: 'core-audience', content: 'Ensure your Clerk JWT template includes `{ "aud": "convex" }`' },
-                { key: 'core-sync', content: <code className="bg-muted px-1 py-0.5">pnpx convex dev</code> },
-                { key: 'core-dev', content: <code className="bg-muted px-1 py-0.5">pnpm dev</code> },
+                { key: 'starter-env-vars', content: 'Configure `CLERK_JWT_ISSUER_DOMAIN` & `NEXT_PUBLIC_CONVEX_URL`' },
+                { key: 'starter-audience', content: 'Ensure your Clerk JWT template includes `{ "aud": "convex" }`' },
+                { key: 'starter-sync', content: <code className="bg-muted px-1 py-0.5">pnpx convex dev</code> },
+                { key: 'starter-dev', content: <code className="bg-muted px-1 py-0.5">pnpm dev</code> },
               ]}
             />
           </div>
@@ -84,40 +88,27 @@ export default function Home() {
 
         <article className="flex flex-col gap-4 rounded-3xl border bg-card p-6 shadow-sm">
           <div className="space-y-2">
-            <h2 className="text-2xl font-semibold">Starter UI Layer</h2>
+            <h2 className="text-2xl font-semibold">Extend your UI</h2>
             <p className="text-sm text-muted-foreground">
-              Adds Tailwind 4 tokens, shadcn-inspired components, and a landing + dashboard experience on top of the core block.
+              Keep things lean with the starter, then mix in components from the official shadcn registry as your product grows.
             </p>
           </div>
 
           <div className="space-y-2">
-            <h3 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground">Install (after core)</h3>
-            <CodeBlock>pnpx shadcn add https://registry-pi-black.vercel.app/r/clerk-convex-starter.json</CodeBlock>
-            <CodeBlock>pnpx shadcn add @vabole/clerk-convex-starter</CodeBlock>
+            <h3 className="font-semibold text-sm uppercase tracking-wide text-muted-foreground">Grab components</h3>
+            <CodeBlock>pnpx shadcn add button</CodeBlock>
+            <CodeBlock>pnpx shadcn add card</CodeBlock>
           </div>
 
           <div className="space-y-2">
-            <h3 className="font-semibold">What this layer replaces</h3>
+            <h3 className="font-semibold">Tips</h3>
             <List
               items={[
-                { key: 'ui-layout', content: '`app/layout.tsx` to apply Geist fonts + Tailwind classes' },
-                { key: 'ui-page', content: '`app/page.tsx` with the marketing hero and dashboard UI' },
-                { key: 'ui-globals', content: '`app/globals.css` (Tailwind theme tokens + animations)' },
-                { key: 'ui-postcss', content: '`postcss.config.mjs` for Tailwind processing' },
+                { key: 'extend-consistency', content: 'Stick with the Tailwind tokens installed by the starter for a cohesive look.' },
+                { key: 'extend-icons', content: 'Bring in icons via `pnpm add lucide-react` whenever you add icon-heavy components.' },
+                { key: 'extend-replay', content: 'Re-run `pnpx shadcn add ... --overwrite` if you tweak templates and need updates.' },
               ]}
             />
-          </div>
-
-          <div className="space-y-2">
-            <h3 className="font-semibold">Quick install</h3>
-            <CodeBlock>pnpx shadcn add https://registry-pi-black.vercel.app/r/clerk-convex-core.json \  && pnpx shadcn add https://registry-pi-black.vercel.app/r/clerk-convex-starter.json</CodeBlock>
-          </div>
-
-          <div className="space-y-2">
-            <h3 className="font-semibold">Non-interactive install</h3>
-            <CodeBlock>pnpm dlx shadcn@latest add --yes --overwrite public/r/clerk-convex-core.json</CodeBlock>
-            <CodeBlock>pnpm dlx shadcn@latest add --yes --overwrite public/r/clerk-convex-starter.json</CodeBlock>
-            <CodeBlock>pnpm dlx shadcn@latest add --yes --overwrite public/r/clerk-convex-core.json \  && pnpm dlx shadcn@latest add --yes --overwrite public/r/clerk-convex-starter.json</CodeBlock>
           </div>
         </article>
       </section>
@@ -128,15 +119,15 @@ export default function Home() {
           {[
             {
               key: 'docs-core',
-              label: 'Clerk + Convex core docs',
+              label: 'Convex × Clerk guide',
               href: 'https://docs.convex.dev/auth/clerk',
-              description: 'Official Convex guide for configuring Clerk issuers and JWT claims.',
+              description: 'Official Convex documentation for configuring Clerk issuers and JWT claims.',
             },
             {
               key: 'docs-ui',
-              label: 'Clerk + Convex starter UI docs',
+              label: 'Clerk integration docs',
               href: 'https://clerk.com/docs/guides/development/integrations/databases/convex',
-              description: 'Clerk’s walkthrough for wiring the App Router + Convex.',
+              description: 'Clerk’s walkthrough for wiring the App Router to Convex.',
             },
             {
               key: 'docs-repo',
@@ -148,7 +139,7 @@ export default function Home() {
               key: 'docs-smoketest',
               label: 'Smoke test command',
               href: 'https://github.com/vabole/registry#development',
-              description: 'Run `pnpm template:test` locally to validate both blocks end-to-end.',
+              description: 'Run `pnpm template:test` locally to validate the starter install end-to-end.',
             },
           ].map((link) => (
             <a

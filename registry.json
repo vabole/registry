@@ -4,87 +4,14 @@
   "homepage": "https://registry-pi-black.vercel.app",
   "items": [
     {
-      "name": "clerk-convex-core",
+      "name": "clerk-convex-starter",
       "type": "registry:block",
-      "title": "Clerk + Convex Core",
-      "description": "Minimal Convex backend and Clerk authentication wiring with neutral styling.",
+      "title": "Clerk + Convex Starter",
+      "description": "One-step Clerk authentication and Convex backend setup with a polished landing experience.",
       "dependencies": [
         "@clerk/nextjs",
         "convex",
-        "convex-helpers"
-      ],
-      "registryDependencies": [],
-      "files": [
-        {
-          "path": "registry/new-york/blocks/clerk-convex-core/app/layout.tsx",
-          "type": "registry:page",
-          "target": "app/layout.tsx"
-        },
-        {
-          "path": "registry/new-york/blocks/clerk-convex-core/app/page.tsx",
-          "type": "registry:page",
-          "target": "app/page.tsx"
-        },
-        {
-          "path": "registry/new-york/blocks/clerk-convex-core/app/globals.css",
-          "type": "registry:file",
-          "target": "app/globals.css"
-        },
-        {
-          "path": "registry/new-york/blocks/clerk-convex-core/convex-client-provider.tsx",
-          "type": "registry:component",
-          "target": "components/convex-client-provider.tsx"
-        },
-        {
-          "path": "registry/new-york/blocks/clerk-convex-core/convex/auth.config.js",
-          "type": "registry:file",
-          "target": "convex/auth.config.js"
-        },
-        {
-          "path": "registry/new-york/blocks/clerk-convex-core/convex/schema.ts",
-          "type": "registry:file",
-          "target": "convex/schema.ts"
-        },
-        {
-          "path": "registry/new-york/blocks/clerk-convex-core/convex/messages.ts",
-          "type": "registry:file",
-          "target": "convex/messages.ts"
-        },
-        {
-          "path": "registry/new-york/blocks/clerk-convex-core/convex/users.ts",
-          "type": "registry:file",
-          "target": "convex/users.ts"
-        },
-        {
-          "path": "registry/new-york/blocks/clerk-convex-core/convex/tsconfig.json",
-          "type": "registry:file",
-          "target": "convex/tsconfig.json"
-        },
-        {
-          "path": "registry/new-york/blocks/clerk-convex-core/env.example",
-          "type": "registry:file",
-          "target": ".env.example"
-        },
-        {
-          "path": "registry/new-york/blocks/clerk-convex-core/middleware.ts",
-          "type": "registry:file",
-          "target": "middleware.ts"
-        }
-      ],
-      "envVars": {
-        "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_...",
-        "CLERK_SECRET_KEY": "sk_test_...",
-        "CLERK_JWT_ISSUER_DOMAIN": "https://your-app.clerk.accounts.dev",
-        "NEXT_PUBLIC_CONVEX_URL": "https://your-deployment.convex.cloud"
-      },
-      "docs": "https://docs.convex.dev/auth/clerk"
-    },
-    {
-      "name": "clerk-convex-starter",
-      "type": "registry:block",
-      "title": "Clerk + Convex Starter UI",
-      "description": "Landing page and dashboard UI layering Tailwind + shadcn on top of the core Clerk + Convex integration.",
-      "dependencies": [
+        "convex-helpers",
         "tailwindcss",
         "@tailwindcss/postcss",
         "postcss",
@@ -109,6 +36,46 @@
           "target": "app/globals.css"
         },
         {
+          "path": "registry/new-york/blocks/clerk-convex-starter/components/convex-client-provider.tsx",
+          "type": "registry:component",
+          "target": "components/convex-client-provider.tsx"
+        },
+        {
+          "path": "registry/new-york/blocks/clerk-convex-starter/convex/auth.config.js",
+          "type": "registry:file",
+          "target": "convex/auth.config.js"
+        },
+        {
+          "path": "registry/new-york/blocks/clerk-convex-starter/convex/schema.ts",
+          "type": "registry:file",
+          "target": "convex/schema.ts"
+        },
+        {
+          "path": "registry/new-york/blocks/clerk-convex-starter/convex/messages.ts",
+          "type": "registry:file",
+          "target": "convex/messages.ts"
+        },
+        {
+          "path": "registry/new-york/blocks/clerk-convex-starter/convex/users.ts",
+          "type": "registry:file",
+          "target": "convex/users.ts"
+        },
+        {
+          "path": "registry/new-york/blocks/clerk-convex-starter/convex/tsconfig.json",
+          "type": "registry:file",
+          "target": "convex/tsconfig.json"
+        },
+        {
+          "path": "registry/new-york/blocks/clerk-convex-starter/env.example",
+          "type": "registry:file",
+          "target": ".env.example"
+        },
+        {
+          "path": "registry/new-york/blocks/clerk-convex-starter/middleware.ts",
+          "type": "registry:file",
+          "target": "middleware.ts"
+        },
+        {
           "path": "registry/new-york/blocks/clerk-convex-starter/postcss.config.mjs",
           "type": "registry:file",
           "target": "postcss.config.mjs"
@@ -120,10 +87,7 @@
         "CLERK_JWT_ISSUER_DOMAIN": "https://your-app.clerk.accounts.dev",
         "NEXT_PUBLIC_CONVEX_URL": "https://your-deployment.convex.cloud"
       },
-      "docs": "https://clerk.com/docs/guides/development/integrations/databases/convex",
-      "css": {
-        "@import \"@clerk/themes/shadcn.css\"": {}
-      }
+      "docs": "https://clerk.com/docs/guides/development/integrations/databases/convex"
     },
     {
       "name": "clerk-quickstart",

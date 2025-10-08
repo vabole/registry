@@ -9,12 +9,12 @@ Use this guide if you want to install the templates from this registry into your
 - An existing Next.js App Router project that has been initialised with `pnpx shadcn init`
 - Accounts for [Clerk](https://clerk.com) and [Convex](https://convex.dev)
 
-## 1. Install the Clerk + Convex core block
+## 1. Install the Clerk + Convex starter block
 
-The core block wires Clerk authentication to a Convex backend with minimal UI.
+The starter block wires Clerk authentication to a Convex backend and ships the landing page/dashboard UI.
 
 ```bash
-pnpx shadcn add https://registry-pi-black.vercel.app/r/clerk-convex-core.json
+pnpx shadcn add https://registry-pi-black.vercel.app/r/clerk-convex-starter.json
 ```
 
 After the CLI finishes, create the required Convex deployment and Clerk application, then copy the environment variables into `.env.local`:
@@ -28,17 +28,7 @@ NEXT_PUBLIC_CONVEX_URL=
 
 > Configure your Clerk JWT template with `{ "aud": "convex" }` so Convex can validate tokens.
 
-## 2. (Optional) Layer on the Starter UI
-
-The optional starter block adds the Tailwind-powered landing page and dashboard experience. Install it after the core block.
-
-```bash
-pnpx shadcn add https://registry-pi-black.vercel.app/r/clerk-convex-starter.json
-```
-
-The CLI will prompt before overwriting files such as `app/layout.tsx`, `app/page.tsx`, and `app/globals.css`. Accept the overwrites to enable the full experience.
-
-## 3. Install dependencies and run the app
+## 2. Install dependencies and run the app
 
 ```bash
 pnpm install
@@ -48,7 +38,7 @@ pnpm dev                      # second terminal – run Next.js locally
 
 Visit `http://localhost:3000` to view the starter UI. Use the Convex dashboard to seed data or invite additional users.
 
-## 4. Repeat installs with the registry alias (optional)
+## 3. Repeat installs with the registry alias (optional)
 
 Add the hosted registry to your project's `components.json` to make subsequent installs easier:
 
@@ -65,14 +55,13 @@ Add the hosted registry to your project's `components.json` to make subsequent i
 Now you can install by name:
 
 ```bash
-pnpx shadcn add @vabole/clerk-convex-core
 pnpx shadcn add @vabole/clerk-convex-starter
 ```
 
-## 5. Troubleshooting
+## 4. Troubleshooting
 
 - Re-run `pnpx shadcn add ... --overwrite` if files get out of sync.
 - Make sure both Convex and Next.js servers are running; the dashboard relies on realtime Convex queries.
-- If Tailwind styles do not apply, verify that `postcss.config.mjs` and `app/globals.css` were overwritten by the starter block.
+- If Tailwind styles do not apply, verify that `postcss.config.mjs` and `app/globals.css` were installed by the starter block.
 
 Happy building! 🚀

@@ -9,7 +9,6 @@ Use this reference when you are updating the registry or adding new templates.
 ├── registry/
 │   └── new-york/
 │       └── blocks/           # Source files for each registry item
-│           ├── clerk-convex-core/
 │           ├── clerk-convex-starter/
 │           └── ...
 ├── public/r/                 # Generated JSON files consumed by the shadcn CLI
@@ -27,6 +26,7 @@ Keep source files under `registry/new-york/blocks/<block-name>/`. The `public/r/
 | `pnpm dev` | Run the marketing/showcase site locally |
 | `pnpm registry:build` | Build the JSON files under `public/r/` |
 | `pnpm template:test` | Spin up a throwaway Next.js app, install the Clerk + Convex stack, and run Convex typecheck |
+| `node scripts/build-registry.mjs` | Offline-friendly build of `public/r/` (mirrors `shadcn build`) |
 
 ## Release checklist
 
@@ -42,13 +42,13 @@ Keep source files under `registry/new-york/blocks/<block-name>/`. The `public/r/
 2. **Reference those files** from `registry.json` using the appropriate `type` and optional `target`. Example snippet:
    ```json
    {
-     "name": "clerk-convex-core",
+     "name": "clerk-convex-starter",
      "type": "registry:block",
-     "title": "Clerk + Convex Core",
-     "description": "Minimal Convex backend and Clerk authentication wiring with neutral styling.",
+     "title": "Clerk + Convex Starter",
+     "description": "One-step Clerk authentication and Convex backend setup with a polished landing experience.",
      "files": [
        {
-         "path": "registry/new-york/blocks/clerk-convex-core/app/page.tsx",
+         "path": "registry/new-york/blocks/clerk-convex-starter/app/page.tsx",
          "type": "registry:page",
          "target": "app/page.tsx"
        }
