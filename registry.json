@@ -4,6 +4,68 @@
   "homepage": "https://github.com/vabole",
   "items": [
     {
+      "name": "clerk-convex-starter",
+      "type": "registry:block",
+      "title": "Clerk + Convex Starter",
+      "description": "Complete Next.js starter with Clerk authentication and Convex backend. Includes auth UI, real-time database, and example queries.",
+      "dependencies": [
+        "@clerk/nextjs",
+        "convex",
+        "convex-helpers"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/clerk-convex-starter/layout.tsx",
+          "type": "registry:page",
+          "target": "app/layout.tsx"
+        },
+        {
+          "path": "registry/new-york/blocks/clerk-convex-starter/page.tsx",
+          "type": "registry:page",
+          "target": "app/page.tsx"
+        },
+        {
+          "path": "registry/new-york/blocks/clerk-convex-starter/middleware.ts",
+          "type": "registry:file",
+          "target": "middleware.ts"
+        },
+        {
+          "path": "registry/new-york/blocks/clerk-convex-starter/convex-client-provider.tsx",
+          "type": "registry:component",
+          "target": "components/convex-client-provider.tsx"
+        },
+        {
+          "path": "registry/new-york/blocks/clerk-convex-starter/convex/auth.config.js",
+          "type": "registry:file",
+          "target": "convex/auth.config.js"
+        },
+        {
+          "path": "registry/new-york/blocks/clerk-convex-starter/convex/schema.ts",
+          "type": "registry:file",
+          "target": "convex/schema.ts"
+        },
+        {
+          "path": "registry/new-york/blocks/clerk-convex-starter/convex/messages.ts",
+          "type": "registry:file",
+          "target": "convex/messages.ts"
+        },
+        {
+          "path": "registry/new-york/blocks/clerk-convex-starter/convex/tsconfig.json",
+          "type": "registry:file",
+          "target": "convex/tsconfig.json"
+        }
+      ],
+      "envVars": {
+        "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_test_...",
+        "CLERK_SECRET_KEY": "sk_test_...",
+        "CLERK_FRONTEND_API_URL": "https://your-app.clerk.accounts.dev",
+        "NEXT_PUBLIC_CONVEX_URL": "https://your-deployment.convex.cloud",
+        "CONVEX_DEPLOY_KEY": "your-deploy-key"
+      },
+      "docs": "https://clerk.com/docs/guides/development/integrations/databases/convex"
+    },
+    {
       "name": "clerk-quickstart",
       "type": "registry:block",
       "title": "Clerk Next.js Quickstart (App Router)",
