@@ -25,7 +25,7 @@ export default function Home() {
           </div>
 
           <div className="mt-4 flex flex-col gap-2">
-            <h3 className="font-semibold">What's Included</h3>
+            <h3 className="font-semibold">What&apos;s Included</h3>
             <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
               <li>Clerk authentication with sign-in/sign-up</li>
               <li>Convex backend integration</li>
