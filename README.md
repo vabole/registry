@@ -10,7 +10,8 @@ This is a **component registry**, not an application. It serves as a distributio
 - Backend integration examples
 - Authentication setups
 
-Users can install these templates into their own projects using the `shadcn` CLI.
+Users can install these templates into their own projects using the `shadcn` CLI. A condensed installation walkthrough is
+available in [`docs/quick-start.md`](docs/quick-start.md).
 
 ## Available Templates
 
@@ -94,50 +95,15 @@ pnpx shadcn add https://registry-pi-black.vercel.app/r/clerk-convex-core.json \
 
 ### For Registry Maintainers
 
-This registry is built using the official shadcn registry template.
-
-**Project Structure:**
-```
-├── app/                      # Showcase website (not distributed)
-├── registry/
-│   └── new-york/
-│       └── blocks/
-│           ├── clerk-convex-core/        # Backend + auth wiring
-│           │   ├── app/
-│           │   ├── convex/
-│           │   ├── env.example
-│           │   └── middleware.ts
-│           └── clerk-convex-starter/     # Optional Tailwind/shadcn UI layer
-│               ├── app/
-│               └── postcss.config.mjs
-└── registry.json             # Registry configuration
-```
-
-**Development:**
-```bash
-# Install dependencies
-pnpm install
-
-# Run dev server (showcase site)
-pnpm dev
-
-# Smoke test the Clerk + Convex template
-pnpm template:test
-
-# Non-interactive install (core + UI, skips prompts)
-pnpm dlx shadcn@latest add --yes --overwrite public/r/clerk-convex-core.json
-pnpm dlx shadcn@latest add --yes --overwrite public/r/clerk-convex-starter.json
-
-# Shell one-liner (non-interactive)
-pnpm dlx shadcn@latest add --yes --overwrite public/r/clerk-convex-core.json \
-  && pnpm dlx shadcn@latest add --yes --overwrite public/r/clerk-convex-starter.json
-
-# Build the registry
-pnpm run registry:build
-
-# Deploy to Vercel
-git push origin main
-```
+- Review [`docs/maintainer-guide.md`](docs/maintainer-guide.md) for the full project layout, release checklist, and testing
+  steps.
+- Helpful commands:
+  ```bash
+  pnpm install           # install dependencies
+  pnpm dev               # run the marketing/showcase site locally
+  pnpm registry:build    # regenerate public/r/*.json
+  pnpm template:test     # smoke test Clerk + Convex templates
+  ```
 
 ## How It Works
 
@@ -175,6 +141,8 @@ git push origin main
 
 ## Documentation
 
+- [Quick Start](docs/quick-start.md)
+- [Maintainer Guide](docs/maintainer-guide.md)
 - [shadcn Registry Documentation](https://ui.shadcn.com/docs/registry)
 - [Clerk Documentation](https://clerk.com/docs)
 - [Convex Documentation](https://docs.convex.dev)
