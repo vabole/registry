@@ -24,10 +24,7 @@ export function Header() {
       </Link>
       <div className='flex items-center gap-x-4'>
         <SignedOut>
-          <SignInButton>
-            <Button variant='ghost'>Sign in</Button>
-          </SignInButton>
-          <SignUpButton>
+          <SignUpButton variant='ghost'>
             <Button>Sign up</Button>
           </SignUpButton>
         </SignedOut>
