@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { cp, mkdir, rm } from "node:fs/promises";
 import { spawnSync } from "node:child_process";
-import { fileURLToPath, pathToFileURL } from "node:url";
+import { fileURLToPath } from "node:url";
 import path from "node:path";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -23,11 +23,23 @@ async function main() {
 
   run("pnpm", ["install", "--prefer-offline"], { cwd: workDir });
 
-  const registryUrl = pathToFileURL(registryItemPath).href;
   console.log("• Applying Clerk + Convex template…");
-  run("pnpm", ["dlx", "shadcn@latest", "add", "--yes", registryUrl], {
+  run("pnpm", ["dlx", "shadcn@latest", "add", "--yes", registryItemPath], {
     cwd: workDir,
   });
+
+  console.log("• Generating Convex client types…");
+  run(
+    "pnpm",
+    ["dlx", "convex@latest", "codegen"],
+    {
+      cwd: workDir,
+      env: {
+        ...process.env,
+        CONVEX_DEPLOYMENT: "https://example.convex.cloud",
+      },
+    },
+  );
 
   console.log("• Running Convex typecheck…");
   run("pnpm", ["dlx", "convex@latest", "typecheck"], {

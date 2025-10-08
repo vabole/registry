@@ -174,7 +174,7 @@ function ConvexConnectionState({ isAuthenticated, isLoading }: ConvexAuthStatePr
     return (
       <div className="rounded-lg border bg-muted/40 p-4 text-sm text-muted-foreground">
         Convex is waiting for a verified Clerk JWT. Confirm you have set{' '}
-        <code className="rounded bg-muted px-1 py-0.5 text-xs">CLERK_FRONTEND_API_URL</code>{' '}
+        <code className="rounded bg-muted px-1 py-0.5 text-xs">CLERK_JWT_ISSUER_DOMAIN</code>{' '}
         and synced <code className="rounded bg-muted px-1 py-0.5 text-xs">convex/auth.config.js</code>{' '}
         with <code className="rounded bg-muted px-1 py-0.5 text-xs">pnpx convex dev</code>.
       </div>

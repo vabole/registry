@@ -55,7 +55,7 @@ pnpx shadcn add @vabole/clerk-convex-starter
 4. Run `pnpx convex dev` to deploy Convex functions
 5. Run `pnpm dev` to start your app
 
-For detailed setup instructions, see the [Clerk + Convex integration guide](https://clerk.com/docs/guides/development/integrations/databases/convex).
+For detailed setup instructions, see the [Clerk + Convex integration guide](https://clerk.com/docs/guides/development/integrations/databases/convex) and Convex's [Clerk auth documentation](https://docs.convex.dev/auth/clerk). Convex expects your Clerk JWT template to include the claim `{ "aud": "convex" }` and to use the issuer domain stored in `CLERK_JWT_ISSUER_DOMAIN`.
 
 ## Using this Registry
 
