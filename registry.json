@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry.json",
   "name": "vabole",
-  "homepage": "https://github.com/vabole",
+  "homepage": "https://registry-pi-black.vercel.app",
   "items": [
     {
       "name": "clerk-convex-starter",

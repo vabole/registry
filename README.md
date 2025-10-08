@@ -25,7 +25,7 @@ A complete Next.js application template with:
 
 **Installation:**
 ```bash
-npx shadcn add https://registry.vabole.com clerk-convex-starter
+npx shadcn add https://registry-pi-black.vercel.app clerk-convex-starter
 ```
 
 **What gets installed:**
@@ -52,10 +52,10 @@ Install templates from this registry into your Next.js project:
 
 ```bash
 # Install the Clerk + Convex starter
-npx shadcn add https://registry.vabole.com clerk-convex-starter
+npx shadcn add https://registry-pi-black.vercel.app clerk-convex-starter
 
 # Or any other available template
-npx shadcn add https://registry.vabole.com <template-name>
+npx shadcn add https://registry-pi-black.vercel.app <template-name>
 ```
 
 ### For Registry Maintainers

@@ -20,7 +20,7 @@ export default function Home() {
           <div className="mt-4 flex flex-col gap-2">
             <h3 className="font-semibold">Installation</h3>
             <code className="text-sm bg-muted p-3 rounded-md">
-              npx shadcn add https://registry.vabole.com clerk-convex-starter
+              npx shadcn add https://registry-pi-black.vercel.app clerk-convex-starter
             </code>
           </div>
 
