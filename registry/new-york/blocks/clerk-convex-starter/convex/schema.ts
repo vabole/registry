@@ -12,7 +12,5 @@ export default defineSchema({
     body: v.string(),
     authorId: v.string(),
     authorName: v.optional(v.string()),
-  })
-    .index('by_authorId', ['authorId'])
-    .index('by_creationTime', ['_creationTime']),
+  }).index('by_authorId', ['authorId']),
 })

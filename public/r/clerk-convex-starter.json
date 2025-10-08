@@ -43,7 +43,7 @@
     },
     {
       "path": "registry/new-york/blocks/clerk-convex-starter/convex/schema.ts",
-      "content": "import { defineSchema, defineTable } from 'convex/server'\nimport { v } from 'convex/values'\n\nexport default defineSchema({\n  users: defineTable({\n    clerkId: v.string(),\n    email: v.optional(v.string()),\n    name: v.optional(v.string()),\n    imageUrl: v.optional(v.string()),\n  }).index('by_clerkId', ['clerkId']),\n  messages: defineTable({\n    body: v.string(),\n    authorId: v.string(),\n    authorName: v.optional(v.string()),\n  })\n    .index('by_authorId', ['authorId'])\n    .index('by_creationTime', ['_creationTime']),\n})\n",
+      "content": "import { defineSchema, defineTable } from 'convex/server'\nimport { v } from 'convex/values'\n\nexport default defineSchema({\n  users: defineTable({\n    clerkId: v.string(),\n    email: v.optional(v.string()),\n    name: v.optional(v.string()),\n    imageUrl: v.optional(v.string()),\n  }).index('by_clerkId', ['clerkId']),\n  messages: defineTable({\n    body: v.string(),\n    authorId: v.string(),\n    authorName: v.optional(v.string()),\n  }).index('by_authorId', ['authorId']),\n})\n",
       "type": "registry:file",
       "target": "convex/schema.ts"
     },
