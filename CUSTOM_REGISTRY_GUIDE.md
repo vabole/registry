@@ -156,6 +156,16 @@ npx shadcn add @vabole/clerk-quickstart
 npx shadcn add file:///Users/vabole/code/shadcn-ui/myregistry/registry-template/public/r/clerk-quickstart.json
 ```
 
+### Installing the Clerk + Convex blocks
+
+```bash
+# Step 1: core auth + backend wiring
+pnpx shadcn add https://your-registry-url/r/clerk-convex-core.json
+
+# Step 2 (optional): Tailwind/shadcn UI layer
+pnpx shadcn add https://your-registry-url/r/clerk-convex-starter.json
+```
+
 ---
 
 ## 🎨 Adding More Components

@@ -14,48 +14,61 @@ Users can install these templates into their own projects using the `shadcn` CLI
 
 ## Available Templates
 
-### Clerk + Convex Starter
+### Clerk + Convex Core
 
-A complete Next.js application template with:
-- ✅ Clerk authentication (sign-in/sign-up)
-- ✅ Convex backend with real-time database
-- ✅ Example queries and mutations
-- ✅ Middleware for route protection
-- ✅ TypeScript + Tailwind CSS
+The essentials for wiring Clerk authentication to a Convex backend:
+- ✅ Convex schema, queries, and mutations
+- ✅ Clerk middleware & Convex client provider
+- ✅ Minimal landing page that keeps users in place until they sign in
+- ✅ No Tailwind or shadcn dependencies—bring your own design system later
 
-**Installation (Direct URL):**
+**Install the core (direct URL):**
 ```bash
-pnpx shadcn add https://registry-pi-black.vercel.app/r/clerk-convex-starter.json
+pnpx shadcn add https://registry-pi-black.vercel.app/r/clerk-convex-core.json
 ```
 
-**Or configure as a registry in your `components.json`:**
-```json
-{
-  "registries": {
-    "@vabole": "https://registry-pi-black.vercel.app/r/{name}.json"
-  }
-}
-```
-Then install with:
+**Or via registry alias:**
 ```bash
-pnpx shadcn add @vabole/clerk-convex-starter
+pnpx shadcn add @vabole/clerk-convex-core
 ```
 
 **What gets installed:**
-- `app/layout.tsx` - Root layout with Clerk and Convex providers
-- `app/page.tsx` - Dashboard with authentication UI
-- `middleware.ts` - Clerk route protection
-- `components/convex-client-provider.tsx` - Convex provider wrapper
-- `convex/` - Database schema and example functions
+- `app/layout.tsx` / `app/page.tsx` – minimal UI with inline styling
+- `app/globals.css` – neutral base styles
+- `components/convex-client-provider.tsx`
+- `middleware.ts`
+- `convex/` schema, functions, and `tsconfig.json`
+- `.env.example` with Convex + Clerk variables
 
-**Setup required after installation:**
-1. Create a [Clerk](https://clerk.com) account and application
+**Core setup steps:**
+1. Create a [Clerk](https://clerk.com) application
 2. Create a [Convex](https://convex.dev) deployment
-3. Configure environment variables (see template's `.env.example`)
-4. Run `pnpx convex dev` to deploy Convex functions
-5. Run `pnpm dev` to start your app
+3. Copy environment variables (`CLERK_JWT_ISSUER_DOMAIN`, `NEXT_PUBLIC_CONVEX_URL`, etc.)
+4. Configure your Clerk JWT template with `{ "aud": "convex" }`
+5. Run `pnpx convex dev` to sync schema, then `pnpm dev`
 
-For detailed setup instructions, see the [Clerk + Convex integration guide](https://clerk.com/docs/guides/development/integrations/databases/convex) and Convex's [Clerk auth documentation](https://docs.convex.dev/auth/clerk). Convex expects your Clerk JWT template to include the claim `{ "aud": "convex" }` and to use the issuer domain stored in `CLERK_JWT_ISSUER_DOMAIN`.
+### Clerk + Convex Starter UI _(optional)_
+
+Adds the polished landing page, Tailwind styling, and shadcn-inspired look on top of the core block:
+- ✅ Marketing-friendly hero with feature highlights
+- ✅ Tailwind-based dashboard with realtime message board
+- ✅ Ready-to-use global theme tokens and animations
+
+**Install after the core block:**
+```bash
+pnpx shadcn add https://registry-pi-black.vercel.app/r/clerk-convex-starter.json
+
+# or by name once the registry alias is configured
+pnpx shadcn add @vabole/clerk-convex-starter
+```
+
+**What this layer overwrites:**
+- `app/layout.tsx` to apply font variables and Tailwind classes
+- `app/page.tsx` for the full landing/dashboard experience
+- `app/globals.css` with Tailwind 4 tokens and utilities
+- `postcss.config.mjs` for Tailwind processing
+
+This block depends on `clerk-convex-core`; the shadcn CLI will prompt to overwrite files if you add it later. Tailwind-related packages (`tailwindcss`, `@tailwindcss/postcss`, `postcss`, `autoprefixer`, `tw-animate-css`) are added automatically.
 
 ## Using this Registry
 
@@ -64,10 +77,14 @@ For detailed setup instructions, see the [Clerk + Convex integration guide](http
 Install templates from this registry into your Next.js project:
 
 ```bash
-# Method 1: Direct URL to JSON file (recommended)
+# Step 1: install the core block (direct URL)
+pnpx shadcn add https://registry-pi-black.vercel.app/r/clerk-convex-core.json
+
+# Step 2: optionally add the UI layer
 pnpx shadcn add https://registry-pi-black.vercel.app/r/clerk-convex-starter.json
 
-# Method 2: After configuring registry (see below)
+# After configuring the registry alias you can use short names
+pnpx shadcn add @vabole/clerk-convex-core
 pnpx shadcn add @vabole/clerk-convex-starter
 ```
 
@@ -81,12 +98,14 @@ This registry is built using the official shadcn registry template.
 ├── registry/
 │   └── new-york/
 │       └── blocks/
-│           └── clerk-convex-starter/  # Template files
-│               ├── layout.tsx
-│               ├── page.tsx
-│               ├── middleware.ts
-│               ├── convex-client-provider.tsx
-│               └── convex/
+│           ├── clerk-convex-core/        # Backend + auth wiring
+│           │   ├── app/
+│           │   ├── convex/
+│           │   ├── env.example
+│           │   └── middleware.ts
+│           └── clerk-convex-starter/     # Optional Tailwind/shadcn UI layer
+│               ├── app/
+│               └── postcss.config.mjs
 └── registry.json             # Registry configuration
 ```
 
@@ -101,7 +120,8 @@ pnpm dev
 # Smoke test the Clerk + Convex template
 pnpm template:test
 
-# Non-interactive install (skips prompts)
+# Non-interactive install (core + UI, skips prompts)
+pnpm dlx shadcn@latest add --yes --overwrite public/r/clerk-convex-core.json
 pnpm dlx shadcn@latest add --yes --overwrite public/r/clerk-convex-starter.json
 
 # Build the registry

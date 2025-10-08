@@ -8,7 +8,14 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, "..");
 const fixtureDir = path.join(repoRoot, "fixtures", "clerk-convex-base");
 const workDir = path.join(repoRoot, ".tmp", "clerk-convex-starter");
-const registryItemPath = path.join(
+const coreRegistryPath = path.join(
+  repoRoot,
+  "public",
+  "r",
+  "clerk-convex-core.json",
+);
+
+const starterRegistryPath = path.join(
   repoRoot,
   "public",
   "r",
@@ -23,12 +30,39 @@ async function main() {
 
   run("pnpm", ["install", "--prefer-offline"], { cwd: workDir });
 
-  console.log("• Applying Clerk + Convex template…");
-  run("pnpm", ["dlx", "shadcn@latest", "add", "--yes", "--overwrite", registryItemPath], {
+  console.log("• Applying Clerk + Convex core block…");
+  run("pnpm", ["dlx", "shadcn@latest", "add", "--yes", "--overwrite", coreRegistryPath], {
     cwd: workDir,
   });
 
   console.log("• Generating Convex client types…");
+  run(
+    "pnpm",
+    ["dlx", "convex@latest", "codegen"],
+    {
+      cwd: workDir,
+      env: {
+        ...process.env,
+        CONVEX_DEPLOYMENT: "https://example.convex.cloud",
+      },
+    },
+  );
+
+  console.log("• Typechecking core install…");
+  run("pnpm", ["dlx", "convex@latest", "typecheck"], {
+    cwd: workDir,
+    env: {
+      ...process.env,
+      CONVEX_DEPLOYMENT: "https://example.convex.cloud",
+    },
+  });
+
+  console.log("• Applying UI starter block…");
+  run("pnpm", ["dlx", "shadcn@latest", "add", "--yes", "--overwrite", starterRegistryPath], {
+    cwd: workDir,
+  });
+
+  console.log("• Regenerating Convex client types after UI install…");
   run(
     "pnpm",
     ["dlx", "convex@latest", "codegen"],
