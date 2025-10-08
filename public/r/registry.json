@@ -55,7 +55,8 @@
         {
           "path": "registry/new-york/blocks/clerk-convex-starter/convex/users.ts",
           "type": "registry:file",
-          "target": "convex/users.ts"
+          "target": "convex/users.ts",
+          "content": "import { mutation } from './_generated/server'\n\nexport const ensure = mutation({\n  args: {},\n  handler: async (ctx) => {\n    const identity = await ctx.auth.getUserIdentity()\n    if (!identity) {\n      throw new Error('Not authenticated')\n    }\n\n    const userData = {\n      clerkId: identity.subject,\n      email: identity.email ?? undefined,\n      name: identity.name ?? undefined,\n      imageUrl: identity.pictureUrl ?? undefined,\n    }\n\n    const existing = await ctx.db\n      .query('users')\n      .withIndex('by_clerkId', (q) => q.eq('clerkId', identity.subject))\n      .unique()\n\n    if (!existing) {\n      await ctx.db.insert('users', userData)\n      return\n    }\n\n    await ctx.db.patch(existing._id, userData)\n  },\n})\n"
         },
         {
           "path": "registry/new-york/blocks/clerk-convex-starter/convex/tsconfig.json",

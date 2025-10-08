@@ -85,7 +85,9 @@
         "next-themes",
         "lucide-react"
       ],
-      "registryDependencies": ["button"],
+      "registryDependencies": [
+        "button"
+      ],
       "files": [
         {
           "path": "registry/new-york/blocks/clerk-quickstart/layouts/layout-with-header.tsx",
@@ -134,7 +136,9 @@
       "type": "registry:component",
       "title": "Hello World",
       "description": "A simple hello world component",
-      "registryDependencies": ["button"],
+      "registryDependencies": [
+        "button"
+      ],
       "files": [
         {
           "path": "registry/new-york/blocks/hello-world/hello-world.tsx",
@@ -147,8 +151,16 @@
       "type": "registry:component",
       "title": "Example Form",
       "description": "A contact form with Zod validation.",
-      "dependencies": ["zod"],
-      "registryDependencies": ["button", "input", "label", "textarea", "card"],
+      "dependencies": [
+        "zod"
+      ],
+      "registryDependencies": [
+        "button",
+        "input",
+        "label",
+        "textarea",
+        "card"
+      ],
       "files": [
         {
           "path": "registry/new-york/blocks/example-form/example-form.tsx",
@@ -161,7 +173,9 @@
       "type": "registry:component",
       "title": "Complex Component",
       "description": "A complex component showing hooks, libs and components.",
-      "registryDependencies": ["card"],
+      "registryDependencies": [
+        "card"
+      ],
       "files": [
         {
           "path": "registry/new-york/blocks/complex-component/page.tsx",
