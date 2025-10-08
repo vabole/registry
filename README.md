@@ -148,20 +148,79 @@ export const list = query({
 
 ## Deployment
 
+### Prerequisites for Deployment
+
+Before deploying to Vercel, you need production credentials:
+
+1. **Clerk Production Keys:**
+   - Go to your Clerk Dashboard
+   - Switch to Production mode
+   - Copy your production Publishable Key and Secret Key
+   - Copy your production Frontend API URL (issuer domain)
+
+2. **Convex Production Deployment:**
+   - In your Convex Dashboard, create a production deployment
+   - Copy your production Deployment URL
+   - Copy your Deploy Key from Settings → Deploy Keys
+
 ### Deploy to Vercel
 
-1. Push your code to GitHub
-2. Import your repository in [Vercel](https://vercel.com)
-3. Add your environment variables
-4. Deploy!
+1. **Push to GitHub:**
+   ```bash
+   git push origin main
+   ```
 
-### Deploy Convex Production
+2. **Import to Vercel:**
+   - Go to [Vercel](https://vercel.com) and sign in
+   - Click "Add New Project"
+   - Import your GitHub repository
 
+3. **Configure Environment Variables:**
+
+   Add these environment variables in Vercel (Project Settings → Environment Variables):
+
+   ```env
+   # Clerk (Production)
+   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_live_...
+   CLERK_SECRET_KEY=sk_live_...
+   CLERK_FRONTEND_API_URL=https://clerk.your-domain.com
+
+   # Convex (Production)
+   NEXT_PUBLIC_CONVEX_URL=https://your-production.convex.cloud
+   CONVEX_DEPLOY_KEY=prod:...
+   ```
+
+   **Important:** Make sure to set these for **Production** environment in Vercel.
+
+4. **Deploy:**
+   - Click "Deploy"
+   - Vercel will automatically run `pnpm build` which:
+     - Deploys your Convex functions
+     - Generates Convex types
+     - Builds your Next.js app
+
+5. **Verify:**
+   - Visit your deployed URL
+   - Test sign-in/sign-up functionality
+   - Verify Convex real-time updates work
+
+### Redeploy After Changes
+
+After making changes to your code:
+
+```bash
+# Commit your changes
+git add .
+git commit -m "Your changes"
+git push
+
+# Vercel will automatically redeploy
+```
+
+For Convex-only changes (functions, schema):
 ```bash
 npx convex deploy
 ```
-
-Update your production environment variables with the new production Convex URL.
 
 ## Documentation
 

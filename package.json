@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "npx convex deploy --cmd 'next build'",
+    "build:next": "next build",
     "start": "next start",
     "lint": "next lint",
     "registry:build": "shadcn build"
